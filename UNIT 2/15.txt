@@ -1,0 +1,15 @@
+15. Insertion at the Beginning of a Doubly Linked List
+
+
+
+struct dnode *addAtBeg(struct dnode *head, int data) {
+    struct dnode *temp = malloc(sizeof(struct dnode));
+    if (temp == NULL) {
+        return head;
+    }
+    temp->prev = NULL;
+    temp->data = data;
+    temp->next = head;
+    if (head != NULL) head->prev = temp;
+    return temp;
+}

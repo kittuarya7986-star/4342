@@ -1,0 +1,43 @@
+13. Expression Tree
+
+
+An expression tree represents an arithmetic expression. Operators are internal nodes and operands are 
+leaf nodes. This program represents A+B*C.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node { char data; struct Node *left,*right; };
+struct Node *newNode(char x) {
+    struct Node *n=malloc(sizeof(struct Node));
+    n->data=x; n->left=n->right=NULL; return n;
+}
+void inorder(struct Node *r) {
+    if(!r) return;
+    if(r->left || r->right) printf("(");
+    inorder(r->left); printf("%c",r->data); inorder(r->right);
+    if(r->left || r->right) printf(")");
+}
+void preorder(struct Node *r) {
+    if(!r) return;
+    printf("%c ",r->data); preorder(r->left); preorder(r->right);
+}
+void postorder(struct Node *r) {
+    if(!r) return;
+    postorder(r->left); postorder(r->right); printf("%c ",r->data);
+}
+int main() {
+    struct Node *r=newNode('+');
+    r->left=newNode('A'); r->right=newNode('*');
+    r->right->left=newNode('B'); r->right->right=newNode('C');
+    printf("Infix: "); inorder(r);
+    printf("\\nPrefix: "); preorder(r);
+    printf("\\nPostfix: "); postorder(r);
+    return 0;
+}
+
+
+Output
+Infix: (A+(B*C))
+Prefix: + A * B C
+Postfix: A B C * +

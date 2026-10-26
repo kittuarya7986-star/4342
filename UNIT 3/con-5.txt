@@ -1,0 +1,39 @@
+5. Insertion in a Binary Tree
+
+Insert a new node at the first available position, level by level from left to right.
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node { int data; struct Node *left, *right; };
+struct Node *createNode(int x) {
+    struct Node *n=malloc(sizeof(struct Node));
+    if(n==NULL) exit(1);
+    n->data=x; n->left=n->right=NULL; return n;
+}
+struct Node *insert(struct Node *root, int x) {
+    if(root==NULL) return createNode(x);
+    struct Node *q[100]; int front=0,rear=0;
+    q[rear++]=root;
+    while(front<rear) {
+        struct Node *t=q[front++];
+        if(t->left==NULL) { t->left=createNode(x); return root; }
+        q[rear++]=t->left;
+        if(t->right==NULL) { t->right=createNode(x); return root; }
+        q[rear++]=t->right;
+    }
+    return root;
+}
+void inorder(struct Node *r) {
+    if(r==NULL) return;
+    inorder(r->left); printf("%d ",r->data); inorder(r->right);
+}
+int main() {
+    struct Node *root=NULL;
+    root=insert(root,10); root=insert(root,20);
+    root=insert(root,30); root=insert(root,40);
+    inorder(root);
+    return 0;
+}

@@ -1,0 +1,22 @@
+17. Insertion After a Given Position
+
+
+
+struct dnode *addAfterPos(struct dnode *head, int data, int position) {
+    if (position < 1) return head;
+    struct dnode *ptr = head;
+    for (int i = 1; ptr != NULL && i < position; i++)
+        ptr = ptr->next;
+    if (ptr == NULL) {
+        return head;
+    }
+
+    struct dnode *newP = malloc(sizeof(struct dnode));
+    if (newP == NULL) return head;
+    newP->data = data;
+    newP->prev = ptr;
+    newP->next = ptr->next;
+    if (ptr->next != NULL) ptr->next->prev = newP;
+    ptr->next = newP;
+    return head;
+}

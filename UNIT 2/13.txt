@@ -1,0 +1,9 @@
+13. Doubly Linked List Node
+
+
+
+struct dnode {
+    struct dnode *prev;
+    int data;
+    struct dnode *next;
+};

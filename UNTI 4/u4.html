@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Handling</title>
+    <link rel="stylesheet" href="../pg-style.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <p><a href="../index.html">HOME</a></p>
+      <div class="nav-links">
+        <a href="../UNIT 1/u1.html">UNIT 1</a>
+        <a href="../UNIT 2/u2.html">UNIT 2</a>
+        <a href="../UNIT 3/u3.html">UNIT 3</a>
+        <a href="../UNTI 4/u4.html">UNIT 4</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="pannel">
+        <div class="head">
+          <button><a href="../UNIT 3/u3.html">←</a></button>
+          <h2>UNIT 4</h2>
+          <button><a href="../UNIT 1/u1.html">→</a></button>
+        </div>
+        <div class="p-body">
+          <!-- question btn -->
+          <button onclick="loadQuestion('file-1.txt')">Question 1</button>
+          <button onclick="loadQuestion('file-2.txt')">Question 2</button>
+          <button onclick="loadQuestion('file-3.txt')">Question 3</button>
+          <button onclick="loadQuestion('file-4.txt')">Question 4</button>
+          <button onclick="loadQuestion('file-5.txt')">Question 5</button>
+          <button onclick="loadQuestion('file-6.txt')">Question 6</button>
+          <button onclick="loadQuestion('file-7.txt')">Question 7</button>
+       
+        </div>
+      </div>
+
+      <div class="display">
+        <!-- display of program -->
+        <h3 id="initial">Question</h3>
+        <p id="question"></p>
+        <pre id="code"></pre>
+      </div>
+    </div>
+
+    <script>
+      function loadQuestion(filename) {
+        // JavaScript to fetch the text file
+        fetch(filename) // Use the filename passed to the function
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "Network response was not ok " + response.statusText
+              );
+            }
+            return response.text();
+          })
+          .then((data) => {
+            const lines = data.split("\n");
+            // Join the first three lines as the question
+            document.getElementById("question").textContent = lines
+              .slice(0, 3)
+              .join(" "); // First three lines as question
+            document.getElementById("code").textContent = lines
+              .slice(3)
+              .join("\n"); // Remaining lines as code
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          });
+      }
+    </script>
+  </body>
+</html>

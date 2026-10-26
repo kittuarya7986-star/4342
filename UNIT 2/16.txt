@@ -1,0 +1,23 @@
+16. Insertion at the End of a Doubly Linked List
+
+
+
+struct dnode *addAtEnd(struct dnode *head, int data) {
+    struct dnode *temp = malloc(sizeof(struct dnode));
+    if (temp == NULL) {
+        return head;
+    }
+    temp->data = data;
+    temp->next = NULL;
+
+    if (head == NULL) {
+        temp->prev = NULL;
+        return temp;
+    }
+
+    struct dnode *ptr = head;
+    while (ptr->next != NULL) ptr = ptr->next;
+    ptr->next = temp;
+    temp->prev = ptr;
+    return head;
+}

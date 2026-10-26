@@ -1,0 +1,22 @@
+11. Deletion from a Given Position
+
+
+
+void del_pos(struct node **head, int position) {
+    if (*head == NULL || position < 1) return;
+
+    if (position == 1) {
+        del_first(head);
+        return;
+    }
+
+    struct node *ptr = *head;
+    for (int i = 1; ptr != NULL && i < position - 1; i++)
+        ptr = ptr->link;
+
+    if (ptr == NULL || ptr->link == NULL) return;
+
+    struct node *temp = ptr->link;
+    ptr->link = temp->link;
+    free(temp);
+}

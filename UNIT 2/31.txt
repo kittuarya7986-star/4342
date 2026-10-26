@@ -1,0 +1,44 @@
+31. Queue Using a Linked List
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+struct Node *front = NULL, *rear = NULL;
+
+void enqueue(int value) {
+    struct Node *newNode = malloc(sizeof(struct Node));
+    if (newNode == NULL) return;
+    newNode->data = value;
+    newNode->next = NULL;
+    if (rear == NULL) front = rear = newNode;
+    else {
+        rear->next = newNode;
+        rear = newNode;
+    }
+}
+
+void display(void) {
+    struct Node *temp = front;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+}
+
+int main(void) {
+    enqueue(10); enqueue(20); enqueue(30);
+    display();
+    while (front != NULL) {
+        struct Node *temp = front;
+        front = front->next;
+        free(temp);
+    }
+    rear = NULL;
+    return 0;
+}

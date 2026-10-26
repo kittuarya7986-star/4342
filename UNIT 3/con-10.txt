@@ -1,0 +1,28 @@
+10. BST Postorder Traversal
+
+
+Postorder visits Left, Right, and Root.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node { int data; struct Node *left,*right; };
+struct Node *insert(struct Node *r,int x) {
+    if(!r) { r=malloc(sizeof(struct Node)); r->data=x; r->left=r->right=NULL; return r; }
+    if(x<r->data) r->left=insert(r->left,x);
+    else if(x>r->data) r->right=insert(r->right,x);
+    return r;
+}
+void postorder(struct Node *r) {
+    if(!r) return;
+    postorder(r->left); postorder(r->right); printf("%d ",r->data);
+}
+int main() {
+    struct Node *r=NULL; int a[]={50,30,70,20,40,60,80};
+    for(int i=0;i<7;i++) r=insert(r,a[i]);
+    postorder(r); return 0;
+}
+
+
+Output
+20 40 30 60 80 70 50

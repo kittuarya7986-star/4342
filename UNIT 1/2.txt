@@ -1,0 +1,28 @@
+// 2. Insertion in an Array
+
+
+In insertion, a new element is added at a particular position. Existing elements are shifted one position to the right.
+
+
+#include <stdio.h>
+int main() {
+    int a[10] = {10, 20, 40, 50};
+    int n = 4;
+    int item = 30;
+    int pos = 2;
+
+    for(int i = n - 1; i >= pos; i--) {
+        a[i + 1] = a[i];
+    }
+
+    a[pos] = item;
+    n++;
+
+    printf("Array after insertion:\n");
+
+    for(int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}

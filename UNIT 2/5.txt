@@ -1,0 +1,14 @@
+5. Count the Number of Nodes
+
+
+
+int count_of_nodes(struct node *head) {
+    int count = 0;
+    struct node *ptr = head;
+
+    while (ptr != NULL) {
+        count++;
+        ptr = ptr->link;
+    }
+    return count;
+}

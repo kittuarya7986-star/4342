@@ -1,0 +1,14 @@
+14. Insertion into an Empty Doubly Linked List
+
+
+
+struct dnode *addToEmpty(struct dnode *head, int data) {
+    struct dnode *temp = malloc(sizeof(struct dnode));
+    if (temp == NULL) {
+        return head;
+    }
+    temp->prev = NULL;
+    temp->data = data;
+    temp->next = NULL;
+    return temp;
+}

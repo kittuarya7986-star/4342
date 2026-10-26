@@ -1,0 +1,12 @@
+26. Polynomial Representation Using a Linked List
+
+Each node stores a coefficient and exponent. For example, 5x³ + 4x² + 7 can be represented as:
+
+
+struct PolyNode {
+    int coeff;
+    int exp;
+    struct PolyNode *next;
+};
+
+

@@ -1,0 +1,14 @@
+18. Deletion from the Beginning of a Doubly Linked List
+
+
+
+struct dnode *delDoublyFirst(struct dnode *head) {
+    if (head == NULL) {
+        return NULL;
+    }
+    struct dnode *temp = head;
+    head = head->next;
+    if (head != NULL) head->prev = NULL;
+    free(temp);
+    return head;
+}

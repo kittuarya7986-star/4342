@@ -1,0 +1,34 @@
+2. Inorder Traversal
+
+
+Inorder traversal visits the Left subtree, Root, and then Right subtree.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node { char data; struct Node *left, *right; };
+
+void inorder(struct Node *root) {
+    if (root == NULL) return;
+    inorder(root->left);
+    printf("%c ", root->data);
+    inorder(root->right);
+}
+
+struct Node *node(char data) {
+    struct Node *n = malloc(sizeof(struct Node));
+    n->data = data; n->left = n->right = NULL;
+    return n;
+}
+
+int main() {
+    struct Node *root = node('A');
+    root->left = node('B');
+    root->right = node('C');
+    inorder(root);
+    return 0;
+}
+
+
+

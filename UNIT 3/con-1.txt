@@ -1,0 +1,32 @@
+1. Binary Tree Creation
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+
+int main() {
+    struct Node *root = malloc(sizeof(struct Node));
+    struct Node *a = malloc(sizeof(struct Node));
+    struct Node *b = malloc(sizeof(struct Node));
+
+    root->data = 10;
+    root->left = a;
+    root->right = b;
+    a->data = 20;
+    a->left = a->right = NULL;
+    b->data = 30;
+    b->left = b->right = NULL;
+
+    printf("Root = %d\\n", root->data);
+    printf("Left Child = %d\\n", root->left->data);
+    printf("Right Child = %d\\n", root->right->data);
+
+    free(a); free(b); free(root);
+    return 0;
+}

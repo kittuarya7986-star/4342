@@ -1,0 +1,18 @@
+19. Deletion from the End of a Doubly Linked List
+
+
+
+struct dnode *delDoublyLast(struct dnode *head) {
+    if (head == NULL) {
+        return NULL;
+    }
+    if (head->next == NULL) {
+        free(head);
+        return NULL;
+    }
+    struct dnode *ptr = head;
+    while (ptr->next != NULL) ptr = ptr->next;
+    ptr->prev->next = NULL;
+    free(ptr);
+    return head;
+}

@@ -1,0 +1,28 @@
+// 10. Recursion — Factorial
+
+
+Recursion is a technique in which a function calls itself to solve a smaller version of the same problem. The function calls are stored in the call stack.
+
+
+#include <stdio.h>
+
+int factorial(int n)
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    else
+    {
+        return n * factorial(n - 1);
+    }
+}
+
+int main()
+{
+    int n = 4;
+
+    printf("Factorial of %d = %d\n", n, factorial(n));
+
+    return 0;
+}

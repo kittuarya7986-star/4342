@@ -1,0 +1,15 @@
+ 4. Traversal / Print Data
+
+
+void print_data(struct node *head) {
+    if (head == NULL) {
+        printf("Linked List is empty");
+        return;
+    }
+
+    struct node *ptr = head;
+    while (ptr != NULL) {
+        printf("%d ", ptr->data);
+        ptr = ptr->link;
+    }
+}

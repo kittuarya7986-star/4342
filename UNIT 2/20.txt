@@ -1,0 +1,20 @@
+20. Deletion from a Given Position in a Doubly Linked List
+
+
+
+
+struct dnode *delDoublyPosition(struct dnode *head, int position) {
+    if (head == NULL || position < 1) return head;
+    struct dnode *ptr = head;
+    for (int i = 1; ptr != NULL && i < position; i++)
+        ptr = ptr->next;
+    if (ptr == NULL) {
+        return head;
+    }
+
+    if (ptr->prev != NULL) ptr->prev->next = ptr->next;
+    else head = ptr->next;
+    if (ptr->next != NULL) ptr->next->prev = ptr->prev;
+    free(ptr);
+    return head;
+}

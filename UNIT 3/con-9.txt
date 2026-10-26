@@ -1,0 +1,26 @@
+9. BST Preorder Traversal
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node { int data; struct Node *left,*right; };
+struct Node *insert(struct Node *r,int x) {
+    if(!r) { r=malloc(sizeof(struct Node)); r->data=x; r->left=r->right=NULL; return r; }
+    if(x<r->data) r->left=insert(r->left,x);
+    else if(x>r->data) r->right=insert(r->right,x);
+    return r;
+}
+void preorder(struct Node *r) {
+    if(!r) return;
+    printf("%d ",r->data); preorder(r->left); preorder(r->right);
+}
+int main() {
+    struct Node *r=NULL; int a[]={50,30,70,20,40,60,80};
+    for(int i=0;i<7;i++) r=insert(r,a[i]);
+    preorder(r); return 0;
+}
+
+
+Output
+50 30 20 40 70 60 80

@@ -1,0 +1,45 @@
+// 6. Stack POP Operation
+
+
+POP removes the top element from the stack. If the stack is empty, stack underflow occurs.
+
+
+#include <stdio.h>
+
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+void push(int item)
+{
+    if (top == MAX - 1)
+        printf("STACK OVERFLOW\n");
+    else
+        stack[++top] = item;
+}
+
+void pop()
+{
+    if (top == -1)
+    {
+        printf("STACK UNDERFLOW\n");
+    }
+    else
+    {
+        printf("Deleted element = %d\n", stack[top]);
+        top--;
+    }
+}
+
+int main()
+{
+    push(10);
+    push(20);
+    push(30);
+
+    pop();
+    pop();
+
+    return 0;
+}

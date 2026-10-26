@@ -1,0 +1,22 @@
+28. Enqueue Operation
+
+
+
+#include <stdio.h>
+#define MAX 5
+int queue[MAX], front = -1, rear = -1;
+
+void enqueue(int value) {
+    if (rear == MAX - 1) {
+        printf("Queue Overflow\n");
+        return;
+    }
+    if (front == -1) front = 0;
+    queue[++rear] = value;
+    printf("%d inserted\n", value);
+}
+
+int main(void) {
+    enqueue(10); enqueue(20); enqueue(30);
+    return 0;
+}

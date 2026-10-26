@@ -1,0 +1,12 @@
+9. Deletion from the Beginning
+
+
+void del_first(struct node **head) {
+    if (*head == NULL) {
+        printf("List is already empty!\n");
+        return;
+    }
+    struct node *temp = *head;
+    *head = (*head)->link;
+    free(temp);
+}

@@ -1,0 +1,18 @@
+22. Circular Doubly Linked List Node
+
+
+
+struct cdnode {
+    struct cdnode *prev;
+    int data;
+    struct cdnode *next;
+};
+
+struct cdnode *circularDoubly(int data) {
+    struct cdnode *temp = malloc(sizeof(struct cdnode));
+    if (temp == NULL) return NULL;
+    temp->data = data;
+    temp->next = temp;
+    temp->prev = temp;
+    return temp;
+}

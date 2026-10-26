@@ -1,0 +1,16 @@
+21. Circular Singly Linked List Node
+
+
+
+struct cnode {
+    int data;
+    struct cnode *next;
+};
+
+struct cnode *circularSingly(int data) {
+    struct cnode *temp = malloc(sizeof(struct cnode));
+    if (temp == NULL) return NULL;
+    temp->data = data;
+    temp->next = temp;
+    return temp;
+}

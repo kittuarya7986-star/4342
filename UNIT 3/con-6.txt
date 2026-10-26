@@ -1,0 +1,51 @@
+6. Deletion in a Binary Tree
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node { int data; struct Node *left,*right; };
+struct Node *newNode(int x) {
+    struct Node *n=malloc(sizeof(struct Node));
+    n->data=x; n->left=n->right=NULL; return n;
+}
+void inorder(struct Node *r) {
+    if(!r) return;
+    inorder(r->left); printf("%d ",r->data); inorder(r->right);
+}
+struct Node *deleteNode(struct Node *root,int key) {
+    if(!root) return NULL;
+    if(!root->left && !root->right) {
+        if(root->data==key) { free(root); return NULL; }
+        return root;
+    }
+    struct Node *q[100], *keyNode=NULL, *last=NULL, *parent=NULL;
+    int front=0,rear=0; q[rear++]=root;
+    while(front<rear) {
+        last=q[front++];
+        if(last->data==key) keyNode=last;
+        if(last->left) { parent=last; q[rear++]=last->left; }
+        if(last->right) { parent=last; q[rear++]=last->right; }
+    }
+    if(keyNode) {
+        keyNode->data=last->data;
+        if(parent->right==last) parent->right=NULL;
+        else parent->left=NULL;
+        free(last);
+    }
+    return root;
+}
+int main() {
+    struct Node *root=newNode(10);
+    root->left=newNode(20); root->right=newNode(30);
+    root->left->left=newNode(40); root->left->right=newNode(50);
+    printf("Before: "); inorder(root);
+    root=deleteNode(root,20);
+    printf("\\nAfter: "); inorder(root);
+    return 0;
+}
+
+
+Output
+Before: 40 20 50 10 30
+After: 40 50 10 30

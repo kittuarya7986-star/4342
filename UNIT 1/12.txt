@@ -1,0 +1,95 @@
+// 12. Infix to Postfix Conversion
+
+
+Operators are temporarily stored in a stack according to operator precedence. Operands are directly added to the postfix expression.
+
+
+#include <stdio.h>
+#include <ctype.h>
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+void push(char ch)
+{
+    stack[++top] = ch;
+}
+
+char pop()
+{
+    return stack[top--];
+}
+
+char peek()
+{
+    return stack[top];
+}
+
+int precedence(char ch)
+{
+    if (ch == '^')
+        return 3;
+
+    if (ch == '*' || ch == '/')
+        return 2;
+
+    if (ch == '+' || ch == '-')
+        return 1;
+
+    return 0;
+}
+
+int main()
+{
+    char infix[] = "a+b*c-d/e*f";
+    char postfix[MAX];
+    int j = 0;
+
+    for (int i = 0; infix[i] != '\0'; i++)
+    {
+        char ch = infix[i];
+
+        if (isalnum(ch))
+        {
+            postfix[j++] = ch;
+        }
+        else if (ch == '(')
+        {
+            push(ch);
+        }
+        else if (ch == ')')
+        {
+            while (top != -1 && peek() != '(')
+            {
+                postfix[j++] = pop();
+            }
+
+            if (top != -1)
+                pop();
+        }
+        else
+        {
+            while (top != -1 &&
+                   precedence(peek()) >= precedence(ch))
+            {
+                postfix[j++] = pop();
+            }
+
+            push(ch);
+        }
+    }
+
+    while (top != -1)
+    {
+        postfix[j++] = pop();
+    }
+
+    postfix[j] = '\0';
+
+    printf("Infix   : %s\n", infix);
+    printf("Postfix : %s\n", postfix);
+
+    return 0;
+}

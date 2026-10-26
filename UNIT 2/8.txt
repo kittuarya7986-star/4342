@@ -1,0 +1,29 @@
+8. Insertion at a Given Position
+
+
+Requires the struct node definition and the add_at_beginning() function above.
+
+
+int add_at_position(struct node **head, int data, int position) {
+    if (position < 1) return 0;
+
+    if (position == 1) {
+        add_at_beginning(head, data);
+        return 1;
+    }
+
+    struct node *ptr = *head;
+    for (int i = 1; ptr != NULL && i < position - 1; i++)
+        ptr = ptr->link;
+
+    if (ptr == NULL) {
+        return 0;
+    }
+
+    struct node *temp = malloc(sizeof(struct node));
+    if (temp == NULL) return 0;
+    temp->data = data;
+    temp->link = ptr->link;
+    ptr->link = temp;
+    return 1;
+}

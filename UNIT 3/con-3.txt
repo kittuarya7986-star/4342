@@ -1,0 +1,24 @@
+3. Preorder Traversal
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node { char data; struct Node *left, *right; };
+struct Node *node(char x) {
+    struct Node *n = malloc(sizeof(struct Node));
+    n->data=x; n->left=n->right=NULL; return n;
+}
+void preorder(struct Node *root) {
+    if (root == NULL) return;
+    printf("%c ", root->data);
+    preorder(root->left);
+    preorder(root->right);
+}
+int main() {
+    struct Node *root=node('A');
+    root->left=node('B'); root->right=node('C');
+    preorder(root);
+    return 0;
+}

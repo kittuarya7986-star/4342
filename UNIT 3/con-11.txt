@@ -1,0 +1,31 @@
+11. Insertion in a BST
+
+Smaller values are inserted in the left subtree and larger values in the right subtree.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node { int data; struct Node *left,*right; };
+struct Node *insert(struct Node *r,int x) {
+    if(!r) {
+        r=malloc(sizeof(struct Node));
+        if(!r) exit(1);
+        r->data=x; r->left=r->right=NULL; return r;
+    }
+    if(x<r->data) r->left=insert(r->left,x);
+    else if(x>r->data) r->right=insert(r->right,x);
+    return r;
+}
+void inorder(struct Node *r) {
+    if(!r) return;
+    inorder(r->left); printf("%d ",r->data); inorder(r->right);
+}
+int main() {
+    struct Node *r=NULL;
+    r=insert(r,50); r=insert(r,30); r=insert(r,70); r=insert(r,65);
+    inorder(r); return 0;
+}
+
+
+Output
+30 50 65 70
